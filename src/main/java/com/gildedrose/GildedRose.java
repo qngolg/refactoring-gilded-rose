@@ -25,9 +25,7 @@ class GildedRose {
 
                     if (item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
                         if (item.sellIn < 11) {
-                            if (item.quality < 50) {
-                                item.quality = item.quality + 1;
-                            }
+                            addQualityWhenLessThen50(item);
                         }
 
                         if (item.sellIn < 6) {
@@ -60,6 +58,12 @@ class GildedRose {
                     }
                 }
             }
+        }
+    }
+
+    private void addQualityWhenLessThen50(Item item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1;
         }
     }
 }
