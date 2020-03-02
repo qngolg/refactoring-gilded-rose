@@ -23,8 +23,8 @@ public class GildedRoseTest {
                 new Item("+5 Dexterity Vest", 10, 20), //
                 new AgedBrie(2, 0), //
                 new Item("Elixir of the Mongoose", 5, 7), //
-                new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
-                new Item("Sulfuras, Hand of Ragnaros", -1, 80),
+                new RagnarosHand( 0, 80), //
+                new RagnarosHand(-1, 80),
                 new BackstagePasses(15, 20),
                 new BackstagePasses(10, 49),
                 new BackstagePasses(5, 49),
@@ -37,8 +37,8 @@ public class GildedRoseTest {
                 new Item("+5 Dexterity Vest", 9, 19), //
                 new AgedBrie(1, 1), //
                 new Item("Elixir of the Mongoose", 4, 6), //
-                new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
-                new Item("Sulfuras, Hand of Ragnaros", -1, 80),
+                new RagnarosHand(0, 80), //
+                new RagnarosHand(-1, 80),
                 new BackstagePasses(14, 21),
                 new BackstagePasses(9, 50),
                 new BackstagePasses(4, 50),
@@ -50,8 +50,8 @@ public class GildedRoseTest {
                 new Item("+5 Dexterity Vest", 8, 18), //
                 new AgedBrie(0, 2), //
                 new Item("Elixir of the Mongoose", 3, 5), //
-                new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
-                new Item("Sulfuras, Hand of Ragnaros", -1, 80),
+                new RagnarosHand(0, 80), //
+                new RagnarosHand(-1, 80),
                 new BackstagePasses(13, 22),
                 new BackstagePasses(8, 50),
                 new BackstagePasses(3, 50),
@@ -92,6 +92,17 @@ public class GildedRoseTest {
 
         assertEquals(13, backstagePasses.sellIn);
         assertEquals(22, backstagePasses.quality);
+    }
+
+    @Test
+    public void should_update_version_when_given_a_hand_of_ragnaros() {
+        Item ragnarosHand = new RagnarosHand(0, 80);
+
+        GildedRose gildedRose = new GildedRose(new Item[]{ragnarosHand});
+        gildedRose.updateQuality();
+
+        assertEquals(0, ragnarosHand.sellIn);
+        assertEquals(80, ragnarosHand.quality);
     }
 
     private boolean assertItems(Item[] results, Item[] items) {
