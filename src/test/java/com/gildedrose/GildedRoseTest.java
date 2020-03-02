@@ -25,10 +25,10 @@ public class GildedRoseTest {
                 new Item("Elixir of the Mongoose", 5, 7), //
                 new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
                 new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 1, 20),
+                new BackstagePasses(15, 20),
+                new BackstagePasses(10, 49),
+                new BackstagePasses(5, 49),
+                new BackstagePasses(1, 20),
                 new Item("Conjured Mana Cake", 3, 6)};
         GildedRose gildedRose = new GildedRose(items);
         gildedRose.updateQuality();
@@ -39,10 +39,10 @@ public class GildedRoseTest {
                 new Item("Elixir of the Mongoose", 4, 6), //
                 new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
                 new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 14, 21),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 9, 50),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 4, 50),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 0, 23),
+                new BackstagePasses(14, 21),
+                new BackstagePasses(9, 50),
+                new BackstagePasses(4, 50),
+                new BackstagePasses(0, 23),
                 new Item("Conjured Mana Cake", 2, 5)};
         assertTrue(assertItems(oneDayResult, items));
 
@@ -52,10 +52,10 @@ public class GildedRoseTest {
                 new Item("Elixir of the Mongoose", 3, 5), //
                 new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
                 new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 13, 22),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 8, 50),
-                new Item("Backstage passes to a TAFKAL80ETC concert", 3, 50),
-                new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
+                new BackstagePasses(13, 22),
+                new BackstagePasses(8, 50),
+                new BackstagePasses(3, 50),
+                new BackstagePasses(-1, 0),
                 new Item("Conjured Mana Cake", 1, 4)};
         gildedRose.updateQuality();
         assertTrue(assertItems(twoDayResult, items));
@@ -81,6 +81,17 @@ public class GildedRoseTest {
 
         assertEquals(0, agedBrie.sellIn);
         assertEquals(2, agedBrie.quality);
+    }
+
+    @Test
+    public void should_update_version_when_given_a_backstage_passes() {
+        Item backstagePasses = new BackstagePasses(14, 21);
+
+        GildedRose gildedRose = new GildedRose(new Item[]{backstagePasses});
+        gildedRose.updateQuality();
+
+        assertEquals(13, backstagePasses.sellIn);
+        assertEquals(22, backstagePasses.quality);
     }
 
     private boolean assertItems(Item[] results, Item[] items) {

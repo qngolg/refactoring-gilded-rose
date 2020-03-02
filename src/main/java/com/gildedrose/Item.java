@@ -2,7 +2,6 @@ package com.gildedrose;
 
 public class Item {
     private static final String HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
-    private static final String BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = "Backstage passes to a TAFKAL80ETC concert";
 
     public String name;
 
@@ -17,28 +16,20 @@ public class Item {
     }
 
     public void initQuality() {
-        if (name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
-            calculateQualityWhenLessThen50();
-        } else {
-            if (quality > 0) {
-                if (!name.equals(HAND_OF_RAGNAROS)) {
-                    quality = quality - 1;
-                }
+        if (quality > 0) {
+            if (!name.equals(HAND_OF_RAGNAROS)) {
+                quality = quality - 1;
             }
         }
     }
 
     public void calculateQualityWithSellIn() {
         if (sellIn < 0) {
-            if (name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
-                quality = 0;
-            } else {
-                if (quality > 0) {
-                    if (name.equals(HAND_OF_RAGNAROS)) {
-                        return;
-                    }
-                    quality = quality - 1;
+            if (quality > 0) {
+                if (name.equals(HAND_OF_RAGNAROS)) {
+                    return;
                 }
+                quality = quality - 1;
             }
         }
     }
@@ -53,21 +44,10 @@ public class Item {
     protected void calculateQualityWhenLessThen50() {
         if (quality < 50) {
             quality = quality + 1;
-            if (name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
-                if (sellIn < 11) {
-                    addQualityWhenLessThen50();
-                }
-
-                if (sellIn < 6) {
-                    if (quality < 50) {
-                        quality = quality + 1;
-                    }
-                }
-            }
         }
     }
 
-    private void addQualityWhenLessThen50() {
+    protected void addQualityWhenLessThen50() {
         if (quality < 50) {
             quality = quality + 1;
         }
