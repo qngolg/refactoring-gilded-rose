@@ -10,7 +10,7 @@ class GildedRose {
         this.items = items;
     }
 
-    public void update_quality() {
+    public void updateQuality() {
         for (Item item : items) {
             if (!item.name.equals(AGED_BRIE)
                     && !item.name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {

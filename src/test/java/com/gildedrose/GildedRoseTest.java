@@ -11,7 +11,7 @@ public class GildedRoseTest {
     public void should_update_quality_when_given_a_foo_item() {
         Item[] items = new Item[]{new Item("foo", 1, 5)};
         GildedRose app = new GildedRose(items);
-        app.update_quality();
+        app.updateQuality();
         assertEquals("foo", app.items[0].name);
         assertThat(app.items[0].quality, is(4));
         assertThat(app.items[0].sellIn, is(0));
@@ -31,7 +31,7 @@ public class GildedRoseTest {
                 new Item("Backstage passes to a TAFKAL80ETC concert", 1, 20),
                 new Item("Conjured Mana Cake", 3, 6)};
         GildedRose gildedRose = new GildedRose(items);
-        gildedRose.update_quality();
+        gildedRose.updateQuality();
 
         Item[] oneDayResult = new Item[]{
                 new Item("+5 Dexterity Vest", 9, 19), //
@@ -57,7 +57,7 @@ public class GildedRoseTest {
                 new Item("Backstage passes to a TAFKAL80ETC concert", 3, 50),
                 new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
                 new Item("Conjured Mana Cake", 1, 4)};
-        gildedRose.update_quality();
+        gildedRose.updateQuality();
         assertTrue(assertItems(twoDayResult, items));
     }
 
