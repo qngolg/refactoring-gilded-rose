@@ -1,7 +1,6 @@
 package com.gildedrose;
 
 public class Item {
-    private static final String AGED_BRIE = "Aged Brie";
     private static final String HAND_OF_RAGNAROS = "Sulfuras, Hand of Ragnaros";
     private static final String BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT = "Backstage passes to a TAFKAL80ETC concert";
 
@@ -21,13 +20,9 @@ public class Item {
         if (name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
             calculateQualityWhenLessThen50();
         } else {
-            if (name.equals(AGED_BRIE)) {
-                calculateQualityWhenLessThen50();
-            } else {
-                if (quality > 0) {
-                    if (!name.equals(HAND_OF_RAGNAROS)) {
-                        quality = quality - 1;
-                    }
+            if (quality > 0) {
+                if (!name.equals(HAND_OF_RAGNAROS)) {
+                    quality = quality - 1;
                 }
             }
         }
@@ -35,20 +30,14 @@ public class Item {
 
     public void calculateQualityWithSellIn() {
         if (sellIn < 0) {
-            if (name.equals(AGED_BRIE)) {
-                if (quality < 50) {
-                    quality = quality + 1;
-                }
+            if (name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
+                quality = 0;
             } else {
-                if (name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
-                    quality = 0;
-                } else {
-                    if (quality > 0) {
-                        if (name.equals(HAND_OF_RAGNAROS)) {
-                            return;
-                        }
-                        quality = quality - 1;
+                if (quality > 0) {
+                    if (name.equals(HAND_OF_RAGNAROS)) {
+                        return;
                     }
+                    quality = quality - 1;
                 }
             }
         }
@@ -61,7 +50,7 @@ public class Item {
         }
     }
 
-    private void calculateQualityWhenLessThen50() {
+    protected void calculateQualityWhenLessThen50() {
         if (quality < 50) {
             quality = quality + 1;
             if (name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
