@@ -17,11 +17,6 @@ public class Item {
         this.quality = quality;
     }
 
-    @Override
-    public String toString() {
-        return this.name + ", " + this.sellIn + ", " + this.quality;
-    }
-
     public void initQuality() {
         if (name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
             calculateQualityWhenLessThen50();
@@ -87,5 +82,10 @@ public class Item {
         if (quality < 50) {
             quality = quality + 1;
         }
+    }
+
+    @Override
+    public String toString() {
+        return this.name + ", " + this.sellIn + ", " + this.quality;
     }
 }
