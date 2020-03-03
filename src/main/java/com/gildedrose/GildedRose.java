@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import java.util.stream.Stream;
+
 class GildedRose {
 
     Item[] items;
@@ -9,13 +11,10 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (Item item : items) {
-            item.initQuality();
-
-            item.calculateSellIn();
-
-            item.calculateQualityWithSellIn();
-        }
+        Stream.of(items)
+                .peek(Item::initQuality)
+                .peek(Item::calculateSellIn)
+                .forEach(Item::calculateQualityWithSellIn);
     }
 
 
